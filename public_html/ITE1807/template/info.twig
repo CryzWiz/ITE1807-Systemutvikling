@@ -1,0 +1,18 @@
+{% extends "generalTemplate.twig" %}
+
+{% block head %}
+    <!-- Specific libraries css and js -->
+    <link rel="stylesheet" href="{{ assets_dir }} css/sysutv2017.css">
+{% endblock %}
+
+{% block content %}
+    <div class="wrap container-fluid">
+
+        <div class="row main-content">
+            <div class="su17_info" >
+                <span>{{ message }}</span>
+            </div>
+        </div><!-- end of main-content -->
+
+    </div>
+{% endblock %}

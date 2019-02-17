@@ -1,0 +1,142 @@
+{% extends "generalTemplate.twig" %}
+
+{% block head %}
+    <!-- for tab control -->
+    <script src="../assets/js/profile.js"></script>
+    <link rel="stylesheet" href="{{ assets_dir }}/css/profile.css">
+    <!-- for datepicker -->
+    <link rel="stylesheet" href="{{ assets_dir }}/css/jquery.datetimepicker.css">
+    <!-- for Datatables -->
+    <link type="text/css" href="{{ assets_dir }}/css/dataTables.checkboxes.css" rel="stylesheet" />
+    <link type="text/css" href="{{ assets_dir }}/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="{{ assets_dir }}/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="{{ assets_dir }}/css/approveTeamTime.dataTables.css" rel="stylesheet" />
+    <script src="{{ assets_dir }}/js/jquery.js"></script>
+    <!-- for datepickerp -->
+    <script src="{{ assets_dir }}/js/jquery.datetimepicker.full.js"></script>
+    <!-- Bootstrap and x-editable scripts -->
+    <script type="text/javascript" src="{{ assets_dir }}/bootstrap/js/bootstrap.min.js"></script>
+    <link href="../assets/bootstrap/css/bootstrap-editable.css" rel="stylesheet"/>
+    <script src="../assets/bootstrap/js/bootstrap-editable.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="wrap container-fluid">
+        <div class="row">
+            <div class="col-sm-3"><h1>{{ user.fullname }}</h1></div>
+            <div class="col-sm-9">
+                {% if messageType == 'warning' or messageType == 'error' %}
+                    <div class="alert alert-danger alert-dismissable" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ message }}
+                    </div>
+                {% elseif  messageType == 'success'%}
+                    <div class="alert alert-success alert-dismissable" role="alert">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        {{ message }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3"><!--left col-->
+                {%  autoescape false %}
+                    <ul class="list-group">
+                        <li class="list-group-item text-muted">Profil:</li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Brukernavn</strong></span>{{ session.username }}</li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>email</strong></span>{{ user.email }}</li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Telefon</strong></span>{{ userinfo.phone=='' ? '&nbsp;' : userinfo.phone }}</li>
+                        <li class="list-group-item text-right"><span class="pull-left"><strong>Mobil</strong></span>{{ userinfo.mobile=='' ? '&nbsp;': userinfo.mobile }} </li>
+
+                    </ul>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Aktive Prosjekter: <i class="fa fa-link fa-1x"></i></div>
+                        {% for p in user_projects %}
+                            <div class="list-group-item text-right">
+                                <a href="../controller/dashboard.php?projectId={{ p.id }}"><span class="pull-left"><strong>{{ p.name }}</strong></span>&nbsp;</a></div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Du er medlem i grupper: <i class="fa fa-link fa-1x"></i></div>
+                        {% for key,value in member_in_teams %}
+                            <div class="list-group-item text-right"><span class="pull-left"><strong>
+                                    {{ value }}
+                                </strong></span>&nbsp;</div>
+                        {% endfor %}
+                        {% if user.isTeamleader %}
+                            <div class="list-group-item text-right">
+                                <a href="../controller/report/team_report.php"><span class="pull-left"><strong>Team Statistikk</strong></span>&nbsp;</a></div>
+                        {% endif %}
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Siste time registreringer: <i class="fa fa-link fa-1x"></i></div>
+                        {% for time in last_times %}
+                            <div class="list-group-item text-right"><span class="pull-left"><strong>
+                                    {{ time.Task_name }} :: {{  time.Start }} :: {{  time.Stop }}
+                                </strong></span>&nbsp;</div>
+                        {% endfor %}
+
+                    </div>
+
+                {%  endautoescape %}
+            </div><!--/col-3-->
+            <div class="col-sm-9">
+
+                <ul class="nav nav-tabs" id="myTab">
+                    <li {{ active_tab == 'home' ? 'class="active"' : ''}}><a href="#home" data-toggle="tab" >Hjem</a></li>
+                    <li {{ active_tab == 'time' ? 'class="active"' : ''}}><a href="#timereg" data-toggle="tab" >Registrer timer</a></li>
+                    {% if user.isTeamleader %}
+                        <li {{ active_tab == 'team' ? 'class="active"' : ''}}><a href="#team" data-toggle="tab" >Team Management</a></li>
+                    {% endif %}
+
+                    {% if user.isAdmin %}
+                        <li {{ active_tab == 'admin' ? 'class="active"' : ''}}><a href="#adminSettings" data-toggle="tab" >Administrator</a></li>
+                    {% endif %}
+                    <li {{ active_tab == 'userinfo' ? 'class="active"' : ''}}><a href="#settings" data-toggle="tab" >Innstillinger</a></li>
+
+                </ul>
+
+                <div class="tab-content">
+
+                    {% include 'profileHomeAddon.twig' %}
+
+                    {% include 'profileTimeregAddon.twig' %}
+
+                    {% if user.isTeamleader %}
+                        {% include 'profileTeamleaderAddon.twig' %}
+                    {% endif %}
+
+                    {% if user.isAdmin %}
+                        {% include 'profileAdminAddon.twig' %}
+                    {% endif %}
+
+                    {% include 'profileSettingsAddon.twig' %}
+
+                </div><!--/tab-content-->
+
+
+            </div><!--/col-9-->
+        </div><!--/row-->
+    </div>
+
+
+    <!-- All the Javas for profile.php -->
+    <!--<script type="text/javascript" src="{{ assets_dir }}/js/postal.js"></script>-->
+    <script type="text/javascript" src="{{ assets_dir }}/js/profile_admin_ajax.js"></script>
+    <script type="text/javascript" src="{{ assets_dir }}/js/profile_admin_user.js"></script>
+    <script type="text/javascript" src="../assets/bootstrap/js/TimeRegistration.js"></script>
+    <script type="text/javascript" src="{{ assets_dir }}/js/profile_user_hourreg.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap-select.js" ></script>
+    <script type="text/javascript" src="{{ assets_dir }}/js/profile_stopwatch.js"></script>
+    <script type="text/javascript">
+        onload();
+    </script>
+
+
+{% endblock %}
+

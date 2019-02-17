@@ -1,0 +1,122 @@
+<div id="edit_task_div">
+    <form class="form" id="editTaskForm">
+        <div class="alert" role="alert" id="tm_edit_task_alert" style="display:none;">
+            <span></span>
+            <a href="#" class="close" onclick="$('#tm_edit_task_alert').hide()">&times;</a>
+        </div>
+        <div class="form-group" id="tm_select_project">
+            <div class="col-xs-12">
+                <label for="team_projects">Prosjekt:</label>
+                <select class="form-control" id="team_projects" >
+                    {% for prj in user_projects %}
+                        <option value="{{ prj.id }}"
+                                {{  prj.id == project_selected_id ? ' selected ' : '' }}
+                        >
+                            {{ prj.name }} :: {{ prj.status }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <label for="team_tasks">Oppgave:</label>
+                <input class="form-control" id="team_proj_tasks_input" style="display: none" />
+                <select class="form-control" id="team_proj_tasks" >
+                    {% for task in assignments %}
+                        <option value="{{ task.id }}"
+                                {{  task.id == assignment_selected.id ? ' selected ' : '' }}
+                        >
+                            {{ task.name }} :: {{ task.status }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group">
+                <label for="tm_task_hours">Estimert tid (timer)</label>
+                <input type="hidden" id="tm_task_hours_old"/>
+                <input class="form-control required" name="tm_task_hours" id="tm_task_hours" placeholder="Estimated (hours)" type="number" step="1"
+                       value="{{ assignment_selected.hours }}" disabled required>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="form-group dates">
+                <label for="task_start_date">Start:</label>
+                <div class="form-group">
+                    <div class='input-group date'>
+                        <input type='text' class="form-control" id="tm_task_start_date" name="tm_task_start_date"
+                               value="{{ assignment_selected.start }}"
+                               onkeydown="return false" readonly/>
+                        <input type="hidden" id="tm_task_start_date_old"/>
+                        <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                  </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $("#tm_task_start_date").datetimepicker({
+                        timepicker:false,
+                        format:'d/m/Y'
+                    });
+                </script>
+
+                <label for="task_end_date">Slutt:</label>
+                <div class='input-group date'>
+                    <input type='text' class="form-control" id="tm_task_end_date" name="tm_task_end_date"
+                           value="{{ assignment_selected.end }}"
+                           onkeydown="return false;" readonly/>
+                    <input type="hidden" id="tm_task_end_date_old"/>
+                    <span class="input-group-addon">
+
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                </div>
+                <script type="text/javascript">
+                    $("#tm_task_end_date").datetimepicker({
+                        timepicker: false,
+                        format:'d/m/Y'
+                    });
+                </script>
+            </div>
+        </div>
+        <div class="form-group task_status" id="tm_edit_status">
+            <div class="col-xs-12">
+                <label for="tasks_status">Status:</label>
+                <input type="hidden" id="tm_edit_status_input_old"/>
+                <select class="form-control" id="tm_edit_status_input" disabled>
+                    {% for key,value in statuses %}
+                        <option value="{{ key }}"
+                                {{ (key == assignment_selected.statusId ? ' selected ' : '') }}
+                        >
+                            {{ value }} :: {{ key }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group e_buttons">
+            <span>&nbsp</span><br>
+            <div class="col-xs-12">
+                <input type="hidden" id="logged_uid" value="{{ user.id }}"/>
+                <button class="btn btn-md btn-success" type="button" id="tm_btnSaveTask" onclick="updateTask()" style="display:none">
+                    <i class="glyphicon glyphicon-ok-sign"></i>
+                    Lagre
+                </button>
+                <button class="btn btn-md btn-danger" type="button" id="tm_btnResetTask" onclick="toggleUpdateTask(true)" style="display:none">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Reset
+                </button>
+                <button class="btn btn-md btn-warning" type="button" id="tm_btnEditTask" onclick="toggleUpdateTask()" >
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    Rediger
+                </button>
+                <button class="btn btn-md btn-danger" type="button" id="tm_btnDeleteTask" onclick="deleteTask()" >
+                    <i class="glyphicon glyphicon-remove-sign"></i>
+                    Slett
+                </button>
+            </div>
+        </div>
+    </form><!-- end of div editTaskForm-->
+</div>

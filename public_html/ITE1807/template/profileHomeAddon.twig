@@ -1,0 +1,33 @@
+<div id="home" {{ active_tab == 'home' ? 'class="tab-pane fade in active"' : 'class="tab-pane fade"' }}>
+    <hr> <!-- Tab content starts below this line -->
+    <div class="table-responsive">
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <ul class="pagination" id="myPager"></ul>
+                {% if not session.user_id == null %}
+                    <span>Welcome back, {{ session.fullname }}</span><br>
+                    <span>You are logged in.</span>
+                {% else %}
+                    <span>{{ session.user_id }}Something went wrong, you should not see this page.</span>
+                {% endif %}
+            </div>
+        </div>
+    </div><!--/table-resp-->
+
+    <hr>
+
+    <h4>Recent Activity</h4>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+
+            <tbody>
+            <tr>
+                <td><i class="pull-right fa fa-edit"></i> Your activity</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div><!--/tab-pane-->

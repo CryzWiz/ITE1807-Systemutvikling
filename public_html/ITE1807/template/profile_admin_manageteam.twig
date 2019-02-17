@@ -1,0 +1,56 @@
+<div class="row col-xs-6">
+    <h3>Behandle team ledelse</h3>
+    <div class="form-group">
+        <label><h4>Velg Team</h4></label>
+        <select name="team_select_teamleader" id="team_select_teamleader" class="form-control">
+            {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+
+    <label><h4>Finn Ansatt</h4></label>
+    <!--<div class="input-group">
+        <input type="text" class="form-control" id="find_username_admin" placeholder="Søk etter en ansatt...">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="find_employee_admin">Søk</button>
+                    </span>
+    </div>-->
+    <div class="row">
+        <div class="col-xs-11" style="padding-right: 0; padding-left: 15px;">
+            <select class="selectpicker form-control" id="find_username_admin" name="find_username_admin" data-live-search="true" data-live-search-placeholder="søk, fri tekst...">
+                {% for user in users %}
+                    <option data-icon="glyphicon glyphicon-user" value="{{ user.Email }}">{{ user.UserName }} : {{ user.FirstName }} {{ user.LastName }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-xs-1" style="padding: 0;">
+                <span class="input-group-btn">
+        <button class="btn btn-default" style="border-top-right-radius: 10%; border-bottom-right-radius: 10%;" type="button" id="find_employee_admin">Søk</button>
+    </span>
+        </div>
+    </div>
+
+
+
+</div>
+
+<div class="row col-xs-5 col-xs-offset-1">
+    <br><br> <!-- Litt enkel juks for å presse elementene litt lengre ned -->
+    <h3>Informasjonsfelt</h3>
+    <div class="alert" role="alert" id="alert-user_admin_manageteam" style="display:none;"></div>
+    <div class="alert alert-info alert-user" id="found_user_admin_manageteam" role="alert" style="display:none;">
+        <input type="hidden" id="emailToAdd" >
+        <input type="hidden" id="idToAdd" >
+        <input type="hidden" id="fullnameToAdd" >
+        <a href="#" class="btn btn-xs btn-primary pull-left" onclick="addFoundEmployeeToTeam_AsLeader()">Legg som teamleader</a>
+        <strong>&nbsp;User:&nbsp;</strong><span id="found-user2"></span>
+        <a href="#" class="close" onclick="$('.alert-user').hide()">&times;</a>
+    </div>
+</div>
+
+
+
+
+

@@ -1,0 +1,220 @@
+<div id="settings" {{ active_tab == 'userinfo' ? 'class="tab-pane fade in active"' : 'class="tab-pane fade"' }}>
+    <hr> <!-- Tab content starts below this line -->
+    <div class="panel-group" id="settings_panels" role="tablist" aria-multiselectable="true">
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="tm_headingUserSettings">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#settings_panels" href="#tm_panelUserSettings" aria-expanded="false" aria-controls="tm_panelUserSettings">
+                        Endre dine private innstillinger
+                    </a>
+                </h4>
+            </div>
+            <div id="tm_panelUserSettings" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tm_headingUserSettings">
+                <div class="panel-body">
+                    <form class="form" action="action1.php" method="post" id="registrationForm">
+                        <div class="col-xs-9">
+                            {% if session.profileUpdateData.messageType == 'error' and display_form_feedback == 'true'  %}
+                                <div class="alert alert-danger alert-dismissable" role="alert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ session.profileUpdateData.message }}
+                                </div>
+                            {% elseif  session.profileUpdateData.messageType == 'success' and display_form_feedback == 'true' %}
+                                <div class="alert alert-success alert-dismissable" role="alert">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {{ session.profileUpdateData.message }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>Fornavn *</h4></label>
+                                <input class="form-control" name="first_name" id="first_name" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.firstname }}"
+                                        {% else %}
+                                            value = "{{ user.fornavn }}"
+                                        {% endif %}
+                                       title="Skriv inn fornavn" type="text" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Etternavn *</h4></label>
+                                <input class="form-control" name="last_name" id="last_name" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.lastname }}"
+                                        {% else %}
+                                            value = "{{ user.etternavn }}"
+                                        {% endif %}
+                                       title="Skriv inn etternavn" type="text" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Fødselsnummer *</h4></label>
+                                <input class="form-control" name="civil_reg_number" id="civil_reg_number" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.civil_reg_number }}"
+                                        {% else %}
+                                            value = "{{ userinfo.personalnumber }}"
+                                        {% endif %}
+                                       title="Skriv inn fødselsnummer" type="text" required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Kontonummer</h4></label>
+                                <input class="form-control" name="account_number" id="account_number" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.account_number }}"
+                                        {% else %}
+                                            value = "{{ userinfo.bankkonto }}"
+                                        {% endif %}
+                                       title="Skriv inn kontonummer" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="phone"><h4>Telefon</h4></label>
+                                <input class="form-control" name="phone" id="phone" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.phone }}"
+                                        {% else %}
+                                            value = "{{ userinfo.phone }}"
+                                        {% endif %}
+                                       title="Skriv inn telefonnummer" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="mobile"><h4>Mobil</h4></label>
+                                <input class="form-control" name="mobile" id="mobile" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.mobile }}"
+                                        {% else %}
+                                            value = "{{ userinfo.mobile }}"
+                                        {% endif %}
+                                       title="Skriv inn mobilnummer" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email *</h4></label>
+                                <input disabled="disabled" class="form-control" name="email" id="email" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.email }}"
+                                        {% else %}
+                                            value = "{{ user.email }}"
+                                        {% endif %}
+                                       title="Skriv inn epostadresse" type="email" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Adresse *</h4></label>
+                                <input class="form-control" id="address1" name="address1" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.address1 }}"
+                                        {% else %}
+                                            value = "{{ userinfo.address }}"
+                                        {% endif %}
+                                       title="Skriv inn adresse" type="text" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Postnummer *</h4></label>
+                                <input class="form-control" id="postcode1" name="postcode1" placeholder="Ingen data registrert"
+                                        {% if session.profileUpdateData.messageType == 'error'  %}
+                                            value = "{{ session.profileUpdateData.user_input.postcode1 }}"
+                                        {% else %}
+                                            value = "{{ userinfo.postcode }}"
+                                        {% endif %}
+                                       title="Skriv inn postkode" type="text" required="required">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Poststed</h4></label>
+                                <input disabled="disabled" class="form-control" id="city1" name="city1" placeholder="Ingen data registrert"
+                                       value="{{ city }}"
+                                       title="Poststed vil fylles automatisk ved lagring" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                * Må fylles ut
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit" name="submit" id="submit"><i class="glyphicon glyphicon-ok-sign"></i> Lagre</button>
+                                <button class="btn btn-lg btn-danger" type="reset"><i class="glyphicon glyphicon-repeat"></i> Nullstill</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="tm_headingUserPass">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#settings_panels" href="#tm_panelUserPass" aria-expanded="false" aria-controls="tm_panelUserPass">
+                        Endre passord
+                    </a>
+                </h4>
+            </div>
+            <div id="tm_panelUserPass" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tm_headingUserPass">
+                <div class="panel-body">
+                    <form class="form" action="action_updatePass.php" method="post" id="registrationForm">
+                        <div class="form-group">
+                            <div class="col-xs-6">
+                                <label for="password"><h4>Passord</h4></label>
+                                <input class="form-control" name="password" id="password" placeholder="Skriv inn nytt passord"  type="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="password2"><h4>Gjenta passord</h4></label>
+                                <input class="form-control" name="password2" id="password2" placeholder="Bekreft nytt passord"  type="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="submit" name="submit" id="submit"><i class="glyphicon glyphicon-ok-sign"></i> Lagre</button>
+                                <button class="btn btn-lg btn-danger" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        </div>
+
+
+</div><!--/tab-pane-->

@@ -1,0 +1,58 @@
+<div class="row col-xs-6" xmlns="http://www.w3.org/1999/html">
+    <h3>Endre brukerstatus</h3>
+
+    <label><h4>Finn Ansatt</h4></label>
+    <!--<div class="input-group">
+        <input type="text" class="form-control" id="find_username_admin2" placeholder="Søk etter en ansatt...">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="find_user_admin">Søk</button>
+                    </span>
+    </div>>-->
+    <div class="row">
+        <div class="col-xs-11" style="padding-right: 0; padding-left: 15px;">
+            <select class="selectpicker form-control" id="find_username_admin2" name="find_username_admin2" data-live-search="true" data-live-search-placeholder="søk, fri tekst...">
+                {% for user in users %}
+                    <option data-icon="glyphicon glyphicon-user" value="{{ user.Email }}">{{ user.UserName }} : {{ user.FirstName }} {{ user.LastName }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-xs-1" style="padding: 0;">
+                <span class="input-group-btn">
+        <button class="btn btn-default" style="border-top-right-radius: 10%; border-bottom-right-radius: 10%;" type="button" id="find_user_admin">Søk</button>
+    </span>
+        </div>
+    </div>
+
+    <h3>Inaktive brukere</h3>
+    <div class="form-group">
+        <select name="inactive_user_select" id="inactive_user_select" class="form-control">
+            {% for inactive_user in inactive_users %}
+                <option value="{{ inactive_user.id }}">{{ inactive_user.UserName }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <br>
+        <button class="btn btn-md btn-danger" onclick="deleteInactiveUserById()" type="reset" name="delete_inactive_user" id="delete_inactive_user"><i class="glyphicon glyphicon-remove"></i> Slett</button>
+    </div>
+
+</div>
+
+
+<div class="row col-xs-5 col-xs-offset-1">
+    <br><br> <!-- Litt enkel juks for å presse elementene litt lengre ned -->
+    <h3>Informasjonsfelt</h3>
+    <div class="alert" role="alert" id="alert-user_admin_manageuser" style="display:none;"></div>
+    <div class="alert alert-info alert-user" id="found_user_admin_manageuser" role="alert" style="display:none;">
+        <input type="hidden" id="emailToAdd" >
+        <input type="hidden" id="idToAdd" >
+        <input type="hidden" id="fullnameToAdd" >
+        <input type="hidden" id="permanent" >
+        <a href="#" class="btn btn-xs btn-primary pull-left" id="changeStatus" onclick="changeUserStatus()">Endre ansettelse form</a>
+        <a href="#" class="btn btn-xs btn-primary pull-left" id="changeAccountStatus" onclick="changeKontoStatus()">Endre konto status</a>
+        <strong>&nbsp;User:&nbsp;</strong><span id="found_user_admin_manageuser"></span>
+        <a href="#" class="close" onclick="$('.alert-user').hide()">&times;</a>
+    </div>
+
+</div>

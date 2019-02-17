@@ -1,0 +1,53 @@
+<div class="teams_and_users">
+    <div class="col-xs-12">
+        <div class="alert" role="alert" id="team-users-alert" style="display:none;">
+            <span></span>
+            <a href="#" class="close" onclick="$('#team-users-alert').hide()">&times;</a>
+        </div>
+        <div class="alert alert-info alert-user" id="found_user-div" role="alert" style="display:none;">
+            <input type="hidden" id="emailToAdd" >
+            <input type="hidden" id="idToAdd" >
+            <input type="hidden" id="fullnameToAdd" >
+            <a href="#" class="btn btn-xs btn-primary pull-left" onclick="addFoundEmployeeToTeam()">Legg til</a>
+            <strong>&nbsp;User:&nbsp;</strong><span id="found-user"></span>
+            <a href="#" class="close" onclick="$('.alert-user').hide()">&times;</a>
+        </div>
+
+        <div class="input-group">
+            <input type="text" class="form-control" id="find_username" placeholder="Search for employeee email...">
+            <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="find_employee">Finn!</button>
+                    </span>
+        </div><!-- /input-group -->
+
+    </div>
+    <div class="form-group teams">
+        <div class="col-xs-12">
+
+            <label for="user_teams">Velg team:</label>
+            <select class="form-control" id="user_teams" >
+                {% for key,value in leader_in_teams %}
+                    <option value="{{ key }}"
+                            {{  (key == team_selected_id ? ' selected ' : '') }}
+                    >
+                        {{ value }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="form-group team_users">
+
+        <div class="col-xs-12" >
+            <div class="col-xs-12">Team medlemmer:</div>
+            <ul class="list-group" id="team_members">
+            </ul>
+        </div>
+        <div class="form-group t_buttons">
+            <div class="col-xs-12">
+                <button class="btn btn-md btn-success" type="button" onclick="submitTeamMembers()">
+                    <i class="glyphicon glyphicon-ok-sign"></i> Lagre</button>
+            </div>
+        </div>
+    </div>
+</div> <!--and of teams_and_users -->

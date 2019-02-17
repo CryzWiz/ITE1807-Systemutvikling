@@ -1,0 +1,98 @@
+<div class="row col-xs-6">
+
+    <h3>Rediger et prosjekt</h3>
+
+            <div class="form-group">
+                <label>Prosjekter</label>
+                <select name="project_manage_select" id="project_manage_select" class="form-control">
+                    {% for project in projects %}
+                        <option value="{{ project.id }}">{{ project.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Team</label>
+                <select class="selectpicker form-control selected-teams" name="selected_teams" id="selected_teams" multiple>
+                    <optgroup id="allokerte_team" label="Allokerte team" disabled>
+                    </optgroup>
+                    <optgroup id="ikke_allokerte_team" label="Ikke allokert team">
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Prosjekt Status</label>
+                <select name="project_status" id="project_status" class="form-control">
+                    {% for status in project_status %}
+                        <option value="{{ status.id }}">{{ status.status }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+        <div class="form-group">
+
+                <label for="project_name"><h4>Prosjektnavn</h4></label>
+                <input class="form-control" name="project_name_manage" id="project_name_manage" type="text">
+        </div>
+
+
+        <div class="form-group">
+                <label for="project_start"><h4>Startdato</h4></label>
+                <div class="form-group">
+                    <div class='input-group date' >
+                        <input type='text' class="form-control" name="manage_project_start" id='manage_project_start' onkeydown='return false'/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $('#manage_project_start').datetimepicker({
+                        timepicker:false,
+                        format:'d/m/Y'
+                    });
+                </script>
+        </div>
+
+        <div class="form-group">
+                <label for="project_end"><h4>Sluttdato</h4></label>
+                <div class="form-group">
+                    <div class='input-group date' >
+                        <input type='text' class="form-control" name="manage_project_end" id='manage_project_end' onkeydown='return false'/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $('#manage_project_end').datetimepicker({
+                        timepicker:false,
+                        format:'d/m/Y'
+                    });
+                </script>
+        </div>
+        <br>
+        <div class="form-group" hidden="true">
+            <input class="form-control" name="project_name_delete" id="project_name_delete" type="text">
+        </div>
+
+
+        <div class="form-group">
+                <br>
+                <button class="btn btn-md btn-success" type="button" name="update_project" id="update_project"><i class="glyphicon glyphicon-ok-sign"></i> Lagre</button>
+                <button class="btn btn-md btn-warning" type="reset" name="reset_edit_project" id="reset_edit_project"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                <button class="btn btn-md btn-danger" type="button" name="delete_project" id="delete_project"> <i class="glyphicon glyphicon-remove"></i> Slett</button>
+        </div>
+
+</div>
+
+<div class="row col-xs-5 col-xs-offset-1">
+    <br><br> <!-- Litt enkel juks for å presse elementene litt lengre ned -->
+    <h3>Informasjonsfelt</h3>
+
+    <div class="alert alert-info" id="alert_admin_edit_projekt" role="alert" style="display:none;">
+
+        <a href="#" class="close" onclick="$('.alert-info').hide()">&times;</a>
+    </div>
+</div>

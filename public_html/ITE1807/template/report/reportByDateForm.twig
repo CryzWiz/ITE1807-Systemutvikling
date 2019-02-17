@@ -1,0 +1,45 @@
+<div id="c_task" >
+    <div class="alert" role="alert" id="tm_create-task-alert" style="display:none;">
+        <span></span>
+        <a href="#" class="close" onclick="$('#report-alert').hide()">&times;</a>
+    </div>
+    <form class="form" id="form_report" name="form_report" method="post" action="team_report.php">
+        <div class="form-group teams">
+            <div class="col-xs-12">
+                <label for="user_teams">Select team:</label>
+                <select class="form-control" id="report_team" name="report_team">
+                    <option value="-1" {{  (-1 == report_team ? ' selected ' : '') }}>
+                        All
+                    </option>
+                    {% for key,value in report_teams %}
+                        <option value="{{ key }}" {{  (key == report_team ? ' selected ' : '') }}>
+                            {{ value }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group teams">
+                <div class="col-xs-12">
+                    <label for="user_teams">Select period:</label>
+                    <select class="form-control" id="report_time" name="report_time">
+                        <option value="FIRSTOFMONTH-TODAY">Denne måneden</option>
+                        <option value="STARTOFLASTWEEK-ENDOFLASTWEEK">Siste uke</option>
+                        <option value="FIRSTOFLASTMONTH-LASTOFLASTMONTH">Siste måned</option>
+                        <option value="FIRSTOFYEAR-LASTOFYEAR">Dette året</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <span>&nbsp</span><br>
+            <div class="col-xs-12">
+                <button id="submit" class="btn btn-md btn-success" type="submit">
+                    <i class="glyphicon glyphicon-ok-sign"></i> show report</button>
+
+            </div>
+        </div>
+
+    </form>
+    <hr class="col-xs-12">
+
+</div> <!-- end of div #c_task -->

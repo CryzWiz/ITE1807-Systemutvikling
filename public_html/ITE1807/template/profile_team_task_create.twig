@@ -1,0 +1,92 @@
+<div id="c_task" >
+    <div class="alert" role="alert" id="tm_create-task-alert" style="display:none;">
+        <span></span>
+        <a href="#" class="close" onclick="$('#tm_create-task-alert').hide()">&times;</a>
+    </div>
+    <form class="form" id="form_create_task" name="form_create_task">
+        <div class="form-group teams">
+            <div class="col-xs-12">
+                <label for="user_teams">Velg team:</label>
+                <select class="form-control" id="c_user_teams">
+                    {% for key,value in leader_in_teams %}
+                        <option value="{{ key }}"
+                                {{  (key == team_selected_id ? ' selected ' : '') }}
+                        >
+                            {{ value }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group c_projects">
+            <div class="col-xs-12">
+                <label for="team_projects">Velg prosjekt:</label>
+                <select class="form-control" id="c_team_projects">
+                    {% for prj in user_projects %}
+                        <option value="{{ prj.id }}"
+                                {{  prj.id == project_selected_id ? ' selected ' : '' }}
+                        >
+                            {{ prj.name }} :: {{ prj.status }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-xs-offset-0">
+                <label for="c_task_name"><h4>Navn på oppgave</h4></label>
+                <input class="form-control required" name="task_name" id="c_task_name" placeholder="Ny oppgave" type="text" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12 col-xs-offset-0">
+                <label for="tm_create_task_hours">Estimert tid (i timer)</label>
+                <input class="form-control required" name="tm_create_task_hours" id="tm_create_task_hours" placeholder="Estimert tid" type="text" required>
+            </div>
+        </div>
+        <div class="form-group c_dates">
+            <div class="col-xs-12">
+                <label for="task_end_date">Start:</label>
+                <div class='input-group date' id="tm_create_task_start">
+                    <input type='text' class="form-control" id="tm_create_task_start_date" name="tm_create_task_start_date"/>
+                    <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                </div>
+                <script type="text/javascript">
+                    $("#tm_create_task_start_date").datetimepicker({
+                        timepicker: false,
+                        format:'d/m/Y'
+                    });
+
+                </script>
+                <label for="task_end_date">Slutt:</label>
+                <div class='input-group date' id="tm_create_task_end">
+                    <input type='text' class="form-control" id="tm_create_task_end_date" name="tm_create_task_end_date"/>
+                    <span class="input-group-addon">
+                                     <span class="glyphicon glyphicon-calendar"></span>
+                              </span>
+                </div>
+                <script type="text/javascript">
+                    $("#tm_create_task_end_date").datetimepicker({
+                        timepicker: false,
+                        format:'d/m/Y'
+                    });
+
+                </script>
+            </div>
+
+        </div>
+        <br>
+        <div class="form-group c_buttons">
+            <span>&nbsp</span><br>
+            <div class="col-xs-12">
+                <button id="c_validate" class="btn btn-md btn-success" type="button"  onclick="submitNewTask()">
+                    <i class="glyphicon glyphicon-ok-sign"></i> Opprett</button>
+
+            </div>
+        </div>
+
+    </form>
+
+</div> <!-- end of div #c_task -->

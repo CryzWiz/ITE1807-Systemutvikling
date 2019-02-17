@@ -1,0 +1,76 @@
+<div id="team" {{ active_tab == 'team' ? 'class="tab-pane fade in active"' : 'class="tab-pane fade"' }}>
+    <hr> <!-- Tab content starts below this line -->
+    <div class="panel-group" id="us_panels" role="tablist" aria-multiselectable="true">
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="tm_headingTeamMembers">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#us_panels" href="#tm_panelTeamMembers" aria-expanded="false" aria-controls="tm_panelTeamMembers">
+                        Legg til/Slett eller endre på Team
+                    </a>
+                </h4>
+            </div>
+            <div id="tm_panelTeamMembers" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tm_headingTeamMembers">
+                <div class="panel-body">
+                    {% include 'profile_team_members.twig' %}
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="tm_headingUpdateTask">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#us_panels" href="#tm_panelUpdateTask" aria-expanded="false" aria-controls="tm_panelUpdateTask">
+                        Oppdater oppgave
+                    </a>
+                </h4>
+            </div>
+            <div id="tm_panelUpdateTask" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tm_headingUpdateTask">
+                <div class="panel-body">
+                    {% include 'profile_team_task_update.twig' %}
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="tm_headingCreateTask">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#us_panels" href="#tm_panelCreateTask" aria-expanded="false" aria-controls="tm_panelCreateTask">
+                        Lag oppgave til prosjekt
+                    </a>
+                </h4>
+            </div>
+            <div id="tm_panelCreateTask" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tm_headingCreateTask">
+                <div class="panel-body">
+                    {% include 'profile_team_task_create.twig' %}
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="tm_headingApproveTime">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#us_panels" href="#tm_panelApproveTime" aria-expanded="false" aria-controls="tm_panelApproveTime">
+                        Behandle timer registrert av dine team-medlemmer
+                    </a>
+                </h4>
+            </div>
+            <div id="tm_panelApproveTime" class="panel-collapse collapse" role="tabpanel" aria-labelledby="tm_headingApproveTime">
+                <div class="panel-body">
+                    {% include 'profile_team_time_approve.twig' %}
+                </div>
+            </div>
+        </div>
+
+    </div><!-- div panel-group-->
+</div> <!-- div tab team-->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="{{ assets_dir }}/js/DataTables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ assets_dir }}/js/DataTables/dataTables.select.min.js"></script>
+<script type="text/javascript" src="{{ assets_dir }}/js/DataTables/Plugins/dataTables.checkboxes.min.js"></script>
+<script type="text/javascript" src="{{ assets_dir }}/js/DataTables/Plugins/dataTables.fixedColumns.min.js"></script>
+<script type="text/javascript" src="{{ assets_dir }}/js/profile_team_ajax.js"></script>
+<script type="text/javascript">
+    onReportTeamLoad();
+</script>
+

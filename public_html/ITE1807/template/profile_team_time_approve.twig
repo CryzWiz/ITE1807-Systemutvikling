@@ -1,0 +1,41 @@
+<div id="tm_time_container">
+    <label><h4>Dine timeregistreringer</h4></label>
+
+    <div class="col-xs-12">
+         <div class="alert alert-info" id="tm_approve_time_alert" role="alert" style="display:none;">
+             <span></span>
+             <a href="#" class="close" onclick="$('#team-users-alert').hide()">&times;</a>
+        </div>
+    </div>
+    <table id="approve_team_hours" class="stripe bordered order-column display" cellspacing="0" style="font-size: x-small">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Navn</th>
+                <th>Prosjekt</th>
+                <th>Gruppe</th>
+                <th>Oppgave</th>
+                <th>Start</th>
+                <th>Stop</th>
+                <th>Sted</th>
+                <th>Kommentar</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th>Navn</th>
+                <th>Prosjekt</th>
+                <th>Gruppe</th>
+                <th>Oppgave</th>
+                <th>Start</th>
+                <th>Stop</th>
+                <th>Sted</th>
+                <th>Kommentar</th>
+            </tr>
+        </tfoot>
+    </table>
+    <button onclick="getIdsForApproving()">Godkjen valgte oppføringer</button>
+</div>
+
+

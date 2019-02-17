@@ -1,0 +1,100 @@
+{% if isPrivate == true %}
+<?php session_start(); ?>
+{% endif %}
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="utf-8">
+    <title>{{ page_title }}</title>
+    <meta name="Author">
+    <!-- <link rel="shortcut icon" href="assets/images/favicon.ico">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ assets_dir }}/bootstrap/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="{{ assets_dir }}/bootstrap/css/bootstrap-theme.min.css" >
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="{{ assets_dir }}/js/jquery-3.1.1.min.js" ></script>
+
+    <!-- Selectpicker -->
+    <link rel="stylesheet" href="../assets/css/bootstrap-select.css" >
+
+    <script type="text/javascript" src="../assets/js/moment.js"></script>
+
+    <!-- General styles -->
+    <link rel="stylesheet" href="{{ assets_dir }}/css/general_styles.css">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+
+    <!-- Here put the general CSS and JS -->
+    {% block head %} {% endblock %}
+</head>
+<body>
+{% if not session.user_id == null %}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ action_dir }}profile.php">Morild Data BA</a>
+    </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ action_dir }}profile.php">Hjem</a></li>
+                    <li><a href="#">Hjelp</a></li>
+                    <li><a href="{{ action_dir }}logout.php">Logg ut</a></li>
+                </ul>
+                <!--
+                <form class="navbar-form navbar-right">
+                    <input type="text" class="form-control" placeholder="Search...">
+                </form>
+                -->
+            </div>
+        </div>
+    </nav>
+{% else %}
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ server_url }}/ITE1807/index.php">Morild Data BA</a>
+            </div>
+        </div>
+    </nav>
+{% endif %}
+{% block content %}{% endblock %}
+<footer>
+    <div class="copyright">
+        <ul>
+            <li><script type="text/javascript">
+                    /* <![CDATA[ */
+                    var myDate = new Date;
+                    var thisyear = myDate.getFullYear();
+                    document.write('<div class="copy">Copyright &copy; 2017 - ' + thisyear + '</div>');
+                    /* ]]> */
+                </script>
+                <noscript><div class="copy">Copyright &copy; 2012 - present</div></noscript>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+
+
+
+</body>
+</html>

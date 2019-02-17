@@ -1,0 +1,5 @@
+SET GLOBAL event_scheduler=ON;
+
+show processList;
+
+show events;

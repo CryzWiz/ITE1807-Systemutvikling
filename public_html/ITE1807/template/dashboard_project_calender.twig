@@ -1,0 +1,76 @@
+<!--<h2 class="sub-header">Prosjekt kalender</h2>-->
+
+<div class="panel panel-default" style="margin:10px;">
+    <div class="panel-heading">Prosjekt kalender</div>
+    <div class="panel-body">
+        <div id="calendar" style="padding: 20px;"></div>
+    </div>
+</div>
+
+<div class="modal modal-fade" id="event-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Event</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="event-index">
+                <input type="hidden" name="event-projectId">
+                <input type="hidden" name="event-userId">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Navn</label>
+                        <div class="col-sm-7">
+                            <input name="event-name" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Gjelder</label>
+                        <div class="col-sm-7">
+                            <input name="event-regards" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Lokasjon</label>
+                        <div class="col-sm-7">
+                            <input name="event-location" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-date" class="col-sm-4 control-label">Datoer</label>
+                        <div class="col-sm-7">
+                            <div class="input-group input-daterange" data-provide="datepicker">
+                                <input name="event-start-date" type="text" class="form-control" value="2012-04-05">
+                                <span class="input-group-addon">til</span>
+                                <input name="event-end-date" type="text" class="form-control" value="2012-04-19">
+                            </div>
+                        </div>
+                    </div>
+                    <input name="eventType" id="eventType" type="hidden" value="event">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Avbryt</button>
+                <button type="button" class="btn btn-primary" id="save-event">Lagre</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .event-tooltip-content:not(:last-child) {
+        border-bottom:1px solid #ddd;
+        padding-bottom:5px;
+        margin-bottom:5px;
+    }
+
+    .event-tooltip-content .event-title {
+        font-size:18px;
+    }
+
+    .event-tooltip-content .event-location {
+        font-size:12px;
+    }
+</style>
+

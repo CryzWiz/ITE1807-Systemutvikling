@@ -1,0 +1,33 @@
+
+SMTP ERROR: Password command failed.
+------------------------------------------------------------------------------------------------------------------------
+Taken from here:
+http://stackoverflow.com/questions/21937586/phpmailer-smtp-error-password-command-failed-when-send-mail-from-my-server
+------------------------------------------------------------------------------------------------------------------------
+Links that fix the problem (you must be logged into google account):
+
+https://www.google.com/settings/u/1/security/lesssecureapps
+
+https://accounts.google.com/b/0/DisplayUnlockCaptcha
+
+https://security.google.com/settings/security/activity?hl=en&pli=1
+
+Some explanation of what happens:
+
+This problem can be caused by either 'less secure' applications trying to use the email account (this is according to
+google help, not sure how they judge what is secure and what is not) OR if you are trying to login several time in a row
+OR if you change countries (for example use VPN, move code to different server or actually try to login from different
+part of the world).
+
+To resolve I had to: (first time)
+
+login to my account via web
+view recent attempts to use the account and accept suspicious access: THIS LINK
+disable the feature of blocking suspicious apps/technologies: THIS LINK
+This worked the first time, but few hours later, probably because I was doing a lot of testing the problem reappeared
+and was not fixable using the above method. In addition I had to clear the captcha (the funny picture, which asks you
+to rewrite a word or a sentence when logging into any account nowadays too many times) :
+
+after login to my account I went HERE
+Clicked continue
+Hope this helps.

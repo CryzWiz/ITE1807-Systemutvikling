@@ -1,0 +1,36 @@
+{% extends "report/reportTemplate.twig" %}
+
+{% block head %}
+    <!-- Specific libraries css and js -->
+    <link rel="stylesheet" href="{{ assets_dir }}/css/general_styles.css">
+    <link rel="stylesheet" href="{{ assets_dir }}/css/report_team.css">
+    <!--
+    <link type="text/css" href="{{ assets_dir }}/css/dataTables.checkboxes.css" rel="stylesheet" />
+    <link type="text/css" href="{{ assets_dir }}/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="{{ assets_dir }}/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+    <link type="text/css" href="{{ assets_dir }}/css/approveTeamTime.dataTables.css" rel="stylesheet" />
+
+    -->
+    <script src="{{ assets_dir }}/js/jquery.js"></script>
+    <!-- for datepickerp -->
+    <script src="{{ assets_dir }}/js/jquery.datetimepicker.full.js"></script>
+    <!-- Bootstrap and x-editable scripts -->
+    <script type="text/javascript" src="{{ assets_dir }}/bootstrap/js/bootstrap.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+    <div class="wrap container-fluid">
+        <div class="row">
+
+            <div class="col-lg-3 col-sm-3 col-md-2 sidebar" style="padding-top: 0px;">
+                {% include 'report/reportByDateForm.twig' %}
+            </div>
+
+            <div class="col-lg-9 col-sm-9 col-md-10">
+                {% include 'report/report_team_all.twig' %}
+            </div>
+        </div>
+    </div><!-- /container -->
+
+{% endblock %}

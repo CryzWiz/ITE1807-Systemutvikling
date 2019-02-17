@@ -1,0 +1,41 @@
+<div class="col-xs-12">
+    <label><h4>Dine timeregistreringer</h4></label>
+
+    <div class="col-xs-12">
+         <div class="alert alert-info" id="info_user_register_time2" role="alert" style="display:none;">
+        </div>
+    </div>
+
+    <table id="user_all_hours" class="table table-bordered table-striped" style="clear: both">
+        <input type="hidden" value="{{ user_id }}" id="user_id">
+        <tbody>
+            <tr>
+                <th width="5">Id</th>
+                <th width="10%">Fra</th>
+                <th width="10%">Til</th>
+                <th width="10%">Sted</th>
+                <th width="10%">Oppgave</th>
+                <th width="10">Team</th>
+                <th width="10">Task</th>
+                <th width="40%">Kommentar</th>
+                <th width="5%">Status*</th>
+            </tr>
+            <!--{% for timereg in user_time_registrations %}
+            <tr>
+                <td>{{ timereg.id }}</td>
+                <td>{{ start_regs[loop.index0] }}</td>
+                <td>{{ stop_regs[loop.index0] }}</td>
+                <td>{{ timereg.Place }}</td>
+                <td>{{ timereg.PredefinedTask }}</td>
+                <td>{{ timereg.Team.Name }}</td>
+                <td>{{ timereg.Task.Name }}</td>
+                <td>{{ timereg.Comment }}</td>
+                <td><a href="#" onclick="changeTimeStatus(this.id)" name="reg_id" id={{ timereg.id }}> {{ timereg.Active }} </a></td>
+            </tr>
+            {% endfor %}-->
+        </tbody>
+    </table>
+    <em>* Trykk på Status for å deaktivere/aktivere timeregistrering</em>
+</div>
+
+

@@ -1,0 +1,56 @@
+<div class="col-xs-6">
+    <div class="form-group">
+        <label><h4>Velg Team</h4></label>
+        <select name="team_select" id="team_select" class="form-control">
+            {% for user_team in user_teams %}
+                <option value="{{ user_team.Team.id }}">{{ user_team.Team.Name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label><h4>Velg Prosjekt</h4></label>
+        <select name="project_select" id="project_select" class="form-control">
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label><h4>Velg Oppgave</h4></label>
+        <select name="oppgave_select" id="oppgave_select" class="form-control">
+        </select>
+    </div>
+
+    <p id="task"></p>
+</div>
+
+<div class="col-xs-5 col-xs-offset-1">
+    <br><br> <!-- Litt enkel juks for å presse elementene litt lengre ned -->
+    <h3>Informasjonsfelt</h3>
+    <div class="alert alert-info" id="info_user_register_time" role="alert" style="display:none;">
+    </div>
+
+</div>
+
+<table id="user" class="table table-bordered table-striped" style="clear: both">
+    <tbody>
+    <tr>
+        <td width="10%">Fra</td>
+        <td width="10%">Til</td>
+        <td width="10%">Sted</td>
+        <td width="10%">Task</td>
+        <td width="60%">Kommentar</td>
+    </tr>
+    <tr>
+        <td><a href="#" id="fra" data-type="combodate" data-template="D MMM YYYY  HH:mm" data-format="YYYY-MM-DD HH:mm" data-viewformat="YYYY-MM-DD HH:mm" data-pk="1"  data-title="Start tidspunkt"></a></td>
+        <td><a href="#" id="til" data-type="combodate" data-template="D MMM YYYY  HH:mm" data-format="YYYY-MM-DD HH:mm" data-viewformat="YYYY-MM-DD HH:mm" data-pk="1"  data-title="slutt tidspunkt"></a></td>
+        <td><a href="#" id="sted" data-type="select" data-pk="1" data-value="" data-title="Select lokasjon"></a></td>
+        <td><a href="#" id="predef_task" data-type="select" data-pk="1" data-value="" data-title="Select task"></a></td>
+        <td><a href="#" id="kommentar" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Fyll inn beskrivelse"></a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<input type="hidden" value="{{ user.id }}" id="user_id">
+<button class="btn btn-md btn-success" type="button" name="user_register_tid" id="user_register_tid"><i class="glyphicon glyphicon-ok-sign"></i> Lagre</button>

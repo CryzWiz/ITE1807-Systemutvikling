@@ -1,0 +1,90 @@
+<div class="tab-pane" id="adminSettings">
+    <hr> <!-- Tab content starts below this line -->
+    <div class="col-sm-12">
+        <div class="panel-group" id="adminaddonAccordation" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a class="adminaddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#adminaddonAccordation" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            Opprett et prosjekt
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        {% include 'profile_admin_createproject.twig' %}
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                    <h4 class="panel-title">
+                        <a class="collapsed adminaddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#adminaddonAccordation" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Rediger/Slett prosjekt
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        {% include 'profile_admin_editproject.twig' %}
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                        <a class="collapsed adminaddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#adminaddonAccordation" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Opprett/Slett team
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+                        {% include 'profile_admin_maketeam.twig' %}
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFour">
+                    <h4 class="panel-title">
+                        <a class="collapsed adminaddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#adminaddonAccordation" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Behandle Teamledere
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="panel-body">
+                        {% include 'profile_admin_manageteam.twig' %}
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingFive">
+                    <h4 class="panel-title">
+                        <a class="collapsed adminaddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#adminaddonAccordation" href="#collapseFive" aria-expanded="false" aria-controls="collapseFour">
+                            Behandle Brukere
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+                        {% include 'profile_admin_manageuser.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!--/tab-pane-->
+
+<!--
+<script>
+    $(document).ready(function() {
+        $('#project_select').change(function () {
+            var selProject = $(this).val();
+            document.getElementById("project_name_manage").value = selProject;
+        });
+    });
+</script> -->
+
+

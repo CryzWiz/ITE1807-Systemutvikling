@@ -1,0 +1,22 @@
+<div id="report" class="col-xs-12">
+    <div class="row">
+        <a class="btn btn-default" href="{{ server_url}}/ITE1807/reportico/run.php?{{ print_url }}" >
+           Print
+        </a>
+        <a class="btn btn-default" href="{{ server_url}}/ITE1807/reportico/run.php?{{ xml_url }}" >
+            XML
+        </a>
+
+    </div>
+    <div class="row">
+        {% if report_team == -1 %}
+            {{ report_all(session.user_id, report_time) }}
+        {% else %}
+            {{ report_team(session.user_id, report_team, report_time) }}
+        {% endif %}
+    </div>
+
+</div>
+
+
+

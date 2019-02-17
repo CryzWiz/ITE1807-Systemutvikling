@@ -1,0 +1,165 @@
+{% extends "generalTemplate.twig" %}
+
+{% block head %}
+    <!-- Specific libraries css and js -->
+    <link rel="stylesheet" href="{{ assets_dir }}/css/dashboard.css">
+    <link rel="stylesheet" href="{{ assets_dir }}/css/general_styles.css">
+    <link rel="stylesheet" href="{{ assets_dir }}/css/morris.css">
+    <link rel="stylesheet" href="{{ assets_dir }}/css/morris.css">
+    <link rel="stylesheet" href="../assets/calender/bootstrap-year-calendar.css">
+
+
+
+{% endblock %}
+
+{% block content %}
+    <!-- used to experiment with morris charts -->
+    <input id="userId" type="hidden" value="{{ user_id }}">
+    <input id="projectId" type="hidden" value="{{ projectId }}">
+    <input id="teamleaderId" type="hidden" value="{{ teamleaderId }}">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar" style="padding-top: 0px;">
+                <ul class="nav nav-sidebar">
+                    <li class="list-group-item text-center" style="border: 0px;"><strong>Prosjektdetaljer</strong></li>
+                <!--    <li class="nav-divider"></li> -->
+                    <li class="list-group-item text-left" style="border: 0px;"><strong>Kunde:</strong> {{ projectInfo.CostumerName }} </li>
+                    <li class="list-group-item text-left" style="border: 0px;"><strong>Adresse:</strong> {{ projectInfo.Address }} </li>
+                    <li class="list-group-item text-left" style="border: 0px;"><strong>Kontaktperson:</strong> {{ projectInfo.ContactPerson }} </li>
+                    <li class="list-group-item text-left" style="border: 0px;"><strong>Epost:</strong> {{ projectInfo.Email }} </li>
+
+                </ul>
+
+                <ul class="nav nav-sidebar ">
+                    <li class="active"><a href="#project_overview" data-toggle="tab">Oppgaver for prosjektet<span class="sr-only">(current)</span></a></li>
+                    <li><a data-toggle="pill" href="#project_teams">Teams på prosjektet</a></li>
+                    <li><a data-toggle="pill" href="#project_reports_user">Dine tall for prosjektet</a></li>
+                    <li><a data-toggle="pill" href="#user_calender">Prosjekt kalender</a></li>
+                    <li><a data-toggle="pill" href="#dashboard_reg_time">Registrer timer</a></li>
+                    <li class="nav-divider"></li>
+                </ul>
+                <br><br><br>
+
+
+                <!--<ul class="nav nav-sidebar">
+                    <li>
+                        <div class="form-group">
+                            <label for="usr">Lokasjon:</label>
+                            <input type="text" class="form-control" id="location">
+                            <label for="usr">Kommentar:</label>
+                            <input type="text" class="form-control" id="comment">
+                        </div>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="text-center">
+                        <div id="timerdiv">
+                            <div>
+                                <span class="hours"></span>
+                                <div class="smalltext">Timer</div>
+                            </div>
+                            <div>
+                                <span class="minutes"></span>
+                                <div class="smalltext">Minutter</div>
+                            </div>
+                            <div>
+                                <span class="seconds"></span>
+                                <div class="smalltext">Sekunder</div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-divider"></li>
+                    <li class="text-center"><button class="btn btn-success" id="start-timer"><i class="fa fa-watch"></i>START TIMER</button></li>
+                    <li class="nav-divider"></li>
+                    <li class="text-center"><button class="btn btn-danger" id="stop-timer">STOP TIMER</button></li>
+                </ul>-->
+
+            </div>
+
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">{{ project_name }} <small>{{ project_startdate }} - {{ project_enddate }}</small></h1>
+                <div class="row placeholders">
+                    <!-- app data -->
+                    <input type="hidden" value="{{ estimatedHoursForProject }}" id="estimatedHoursForProject">
+                    <input type="hidden" value="{{ registeredHoursForProject }}" id="registeredHoursForProject">
+                    <input type="hidden" value="{{ completedProjectTasks }}" id="completedProjectTasks">
+
+                    <ng ng-app="test">
+                        <div class="container" ng-controller="Ctrl1">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div progress-bar="" id="hoursChart" class=""
+                                         data-total="{{ estimatedHoursForProject }}"
+                                         data-complete-label=" timer"
+                                         data-complete="val1"
+                                         data-label="Estimerte Timer"
+                                         title="Registrerte timer mot estimerte timer"
+                                         data-toggle="tooltip">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div progress-bar="" id="hoursChart3" class=""
+                                         data-total="{{ totalNumberOfTasksOnProject }}"
+                                         data-bar-class="progress-bar-success"
+                                         data-show-percent="true"
+                                         data-complete="val3"
+                                         data-complete-label="%"
+                                         data-label="Oppgaver Totalt"
+                                         title="Ferdigstilte oppgaver mot oppgaver totalt"
+                                         data-toggle="tooltip">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng>
+                </div>
+
+                <hr>
+
+                <div class="tab-content">
+                    <div id="project_overview" class="tab-pane fade in active">
+                        {% include 'dashboard_project_overview_user.twig' %}
+                    </div>
+                    <div id="project_teams" class="tab-pane fade">
+                        {% include 'dashboard_project_teams.twig' %}
+                    </div>
+                    <div id="project_reports_user" class="tab-pane fade">
+                        {% include 'dashboard_project_reports_user.twig' %}
+                    </div>
+                    <div id="user_calender" class="tab-pane fade">
+                        {% include 'dashboard_project_calender.twig' %}
+                    </div>
+                    <div id="dashboard_reg_time" class="tab-pane fade">
+                        {% include 'dashboard_reg_time.twig' %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div><!-- /container -->
+
+    <!-- Scripts for morris charts, progress bars etc -->
+    <script type="text/javascript" src="{{ assets_dir }}/bootstrap/js/angular.min.js"></script>
+    <script type="text/javascript" src="{{ assets_dir }}/js/dashboard_statusBars.js"></script>
+    <script type="text/javascript" src="{{ assets_dir }}/js/dashboard_project_reports_user.js"></script>
+    <script type="text/javascript" src="../assets/js/dashboard_project_calendar.js"></script>
+
+
+    <script type="text/javascript" src="{{ assets_dir }}/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--Scripts for bootstrap calendar-->
+    <script type="text/javascript" src="../assets/calender/bootstrap-datepicker.js"></script>
+    <script type="text/javascript" src="../assets/calender/bootstrap-year-calendar.js"></script>
+    <script type="text/javascript" src="../assets/calender/bootstrap-popover.js"></script>
+
+    <!-- Morris-chart includes -->
+    <script type="text/javascript" src="{{ assets_dir }}/js/raphael-min.js"></script>
+    <script type="text/javascript" src="{{ assets_dir }}/js/morris-0.4.1.min.js"></script>
+
+
+    <!-- load scripts to fetch data and fill morrischarts -->
+    <script type="text/javascript">
+        onload();
+    </script>
+
+{% endblock %}

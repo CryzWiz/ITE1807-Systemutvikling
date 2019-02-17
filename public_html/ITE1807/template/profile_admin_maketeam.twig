@@ -1,0 +1,49 @@
+<div class="row col-xs-6">
+    <h3>Opprett et team</h3>
+
+    <div class="form-group">
+        <label><h4>Team Navn</h4></label>
+        <input class="form-control" name="team_name" id="team_name" type="text">
+    </div>
+
+    <div class="form-group">
+        <br>
+        <button class="btn btn-md btn-success" type="button" name="make_team" id="make_team"><i class="glyphicon glyphicon-ok-sign"></i> Opprett</button>
+        <button class="btn btn-md btn-warning" type="reset" name="reset_create_team" id="reset_create_team"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+    </div>
+
+
+    <h3>Slett et team</h3>
+
+    <div class="form-group">
+        <label><h4>Velg Team</h4></label>
+        <select name="team_select_delete" id="team_select_delete" class="form-control">
+            {% for team in teams %}
+                <option value="{{ team.id }}">{{ team.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <br>
+        <button class="btn btn-md btn-danger" onclick="deleteTeamById()" type="reset" name="delete_team" id="delete_team"><i class="glyphicon glyphicon-remove"></i> Slett</button>
+    </div>
+
+
+</div>
+
+<div class="row col-xs-5 col-xs-offset-1">
+    <br><br> <!-- Litt enkel juks for å presse elementene litt lengre ned -->
+    <h3>Informasjonsfelt</h3>
+
+    <div class="alert alert-info alert-dismissable" id="alert_admin_make_team" role="alert" style="display:none;">
+
+    </div>
+</div>
+
+
+
+
+
+
+

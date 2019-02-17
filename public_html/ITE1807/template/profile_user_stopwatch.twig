@@ -1,0 +1,76 @@
+<div class="col-xs-6">
+    <div class="form-group">
+        <label><h4>Velg Team</h4></label>
+        <select name="team_select_timer" id="team_select_timer" class="form-control">
+            {% for user_team in user_teams %}
+                <option value="{{ user_team.Team.id }}">{{ user_team.Team.Name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label><h4>Velg Prosjekt</h4></label>
+        <select name="project_select_timer" id="project_select_timer" class="form-control">
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label><h4>Velg Oppgave</h4></label>
+        <select name="oppgave_select_timer" id="oppgave_select_timer" class="form-control">
+        </select>
+    </div>
+
+    <p id="task_timer"></p>
+</div>
+
+
+<div class="col-xs-5 col-xs-offset-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-offset-3">
+                <div id="timerdiv">
+                    <div>
+                        <span class="hours"><p id="timer-hours"> </p></span>
+                        <div class="smalltext">Hours</div>
+                    </div>
+                    <div>
+                        <span class="minutes"><p id="timer-minutes"> </p></span>
+                        <div class="smalltext">Minutes</div>
+                    </div>
+                    <div>
+                        <span class="seconds"><p id="timer-seconds"> </p></span>
+                        <div class="smalltext">Seconds</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Informasjonsfelt</h3>
+    <div class="alert alert-info" id="info_user_register_time_timer" role="alert" style="display:none;">
+    </div>
+</div>
+
+<table id="user_timer" class="table table-bordered table-striped" style="clear: both">
+    <tbody>
+    <tr>
+        <td width="10%">Fra</td>
+        <td width="10%">Til</td>
+        <td width="10%">Sted</td>
+        <td width="10%">Task</td>
+        <td width="60%">Kommentar</td>
+    </tr>
+    <tr>
+        <td><p class="btn btn-success" id="start_timer">START TIMER</p></td>
+        <td><p class="btn btn-danger" id="stop_timer">STOP TIMER</p></td>
+        <td><a href="#" id="sted_timer" data-type="select" data-pk="1" data-value="" data-title="Select lokasjon"></a></td>
+        <td><a href="#" id="predef_task_timer" data-type="select" data-pk="1" data-value="" data-title="Select task"></a></td>
+        <td><a href="#" id="kommentar_timer" data-type="text" data-pk="1" data-placement="right" data-placeholder="Required" data-title="Fyll inn beskrivelse"></a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<input type="hidden" value="{{ user.id }}" id="user_id_timer">
+<button class="btn btn-md btn-success" type="button" name="user_register_tid_timer" id="user_register_tid_timer"><i class="glyphicon glyphicon-ok-sign"></i> Lagre</button>

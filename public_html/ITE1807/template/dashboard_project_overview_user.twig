@@ -1,0 +1,28 @@
+<h2 class="sub-header">Oppgaver for prosjektet</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Oppgave</th>
+            <th>Team</th>
+            <th>Estimert tid</th>
+            <th>Start</th>
+            <th>Slutt</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for task in projectTasks %}
+            <tr>
+                <td>{{ task.name }}</td>
+                <td>{{ task.teamname }}</td>
+                <td>{{ task.estimated }}</td>
+                <td>{{ task.start }}</td>
+                <td>{{ task.end }}</td>
+                <td>{{ task.status }}</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>

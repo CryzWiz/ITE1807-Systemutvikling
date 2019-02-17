@@ -1,0 +1,25 @@
+<h2 class="sub-header">Team som jobber på prosjektet</h2>
+<div class="col-sm-6 col-sm-offset-2">
+
+    {% for team in teamleader_holder %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ team.teamname }}</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="nav">
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>Teamleder:</strong></span> {{ team.name }}</li>
+                    <li class="list-group-item text-right"><span class="pull-left"><strong>E-post:</strong></span> {{ team.email }}</li>
+                </ul>
+            </div>
+        </div>
+    {% endfor %}
+
+
+
+</div>
+
+
+
+
+

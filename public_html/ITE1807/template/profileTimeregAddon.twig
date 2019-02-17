@@ -1,0 +1,50 @@
+<div class="tab-pane fade" id="timereg">
+    <hr> <!-- Tab content starts below this line -->
+    <div class="panel-group" id="useraddonAccordation" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#useraddonAccordation" href="#usercollapseOne" aria-expanded="false" aria-controls="usercollapseOne">
+                        Stoppeklokke
+                    </a>
+                </h4>
+            </div>
+            <div id="usercollapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="userheadingOne">
+                <div class="panel-body">
+                    {% include 'profile_user_stopwatch.twig' %}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="userheadingTwo">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#useraddonAccordation" href="#usercollapseTwo" aria-expanded="false" aria-controls="usercollapseTwo">
+                        Registrer timer manuelt
+                    </a>
+                </h4>
+            </div>
+            <div id="usercollapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="userheadingTwo">
+                <div class="panel-body">
+                    {% include 'profile_user_reghours.twig' %}
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="userheadingThree">
+                <h4 class="panel-title">
+                    <a class="collapsed useraddonAccordationlinks" role="button" data-toggle="collapse" data-parent="#useraddonAccordation" href="#usercollapseThree" aria-expanded="false" aria-controls="usercollapseThree">
+                        Se registrerte timer
+                    </a>
+                </h4>
+            </div>
+            <div id="usercollapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="userheadingThree">
+                <div class="panel-body">
+                    {% include 'profile_user_reghours_showAll.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!--/tab-pane-->
+
+

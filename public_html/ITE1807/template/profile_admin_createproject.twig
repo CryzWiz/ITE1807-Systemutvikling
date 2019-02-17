@@ -1,0 +1,107 @@
+<div class="row col-xs-6">
+
+    <h3>Opprett et prosjekt</h3>
+
+    <div class="form-group">
+        <label for="project_name"><h4>Prosjektnavn</h4></label>
+        <input class="form-control" name="project_name" id="project_name" type="text">
+    </div>
+
+    <!-- Project details -->
+    <div class="row">
+        <div class="form-group col-xs-6">
+            <label for="costumer_name"><h4>Kundenavn</h4></label>
+            <input class="form-control" name="costumer_name" id="costumer_name" type="text">
+        </div>
+
+        <div class="form-group col-xs-6">
+            <label for="costumer_address"><h4>Adressa</h4></label>
+            <input class="form-control" name="costumer_address" id="costumer_address" type="text">
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="form-group col-xs-6">
+            <label for="costumer_contactPerson"><h4>Kontakt Person</h4></label>
+            <input class="form-control" name="costumer_contactPerson" id="costumer_contactPerson" type="text">
+        </div>
+
+        <div class="form-group col-xs-6">
+            <label for="costumer_email"><h4>Epost</h4></label>
+            <input class="form-control" name="costumer_email" id="costumer_email" type="text">
+        </div>
+
+    </div>
+
+
+        <div class="form-group">
+            <label><h4>Velg Team</h4></label>
+            <!--<select multiple="multiple" name="team_select_project" id="team_select_project" class="form-control">
+                {% for team in teams %}
+                    <option value="{{ team.id }}">{{ team.name }}</option>
+                {% endfor %}
+            </select>-->
+
+            <select multiple="multiple" name="team_select_project" id="team_select_project" class="selectpicker form-control">
+                {% for team in teams %}
+                    <option value="{{ team.id }}">{{ team.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+                <label for="project_start"><h4>Startdato</h4></label>
+                <div class="form-group">
+                    <div class='input-group date' >
+                        <input type='text' class="form-control" name="create_project_start" id='create_project_start' onkeydown='return false'/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $('#create_project_start').datetimepicker({
+                        timepicker:false,
+                        format:'d/m/Y'
+                    });
+                </script>
+        </div>
+
+        <div class="form-group">
+                <label for="project_end"><h4>Sluttdato</h4></label>
+                <div class="form-group">
+                    <div class='input-group date' >
+                        <input type='text' class="form-control" name="create_project_end" id='create_project_end' onkeydown='return false'/>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $('#create_project_end').datetimepicker({
+                        timepicker:false,
+                        format:'d/m/Y'
+                    });
+                </script>
+        </div>
+
+        <div class="form-group">
+                <br>
+                <button class="btn btn-md btn-success" type="button" id="create_project"><i class="glyphicon glyphicon-ok-sign"></i> Opprett</button>
+                <button class="btn btn-md btn-warning" type="reset" name="reset_create_project" id="reset_create_project"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+        </div>
+
+</div>
+
+<div class="row col-xs-5 col-xs-offset-1">
+    <br><br> <!-- Litt enkel juks for å presse elementene litt lengre ned -->
+    <h3>Informasjonsfelt</h3>
+
+    <!--<div class="alert" role="alert" id="alert_admin_make_projekt" style="display:none;"></div>-->
+
+    <div class="alert alert-info" id="alert_admin_make_projekt" role="alert" style="display:none;">
+
+    </div>
+
+</div>
